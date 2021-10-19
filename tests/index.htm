@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Mocha</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../dist/selection_serializer.min.js"></script>
+
+    <script class="mocha-init">
+        mocha.setup('bdd');
+    </script>
+
+
+</head>
+<body>
+    <h4>before editable container</h4>
+    <div id="container" contenteditable="true" style="width:200px;height:200px">start of doc<p>1st paragraph, <span style="color:red">hightlighted text</span>end of doc</p></div>
+    <div>after editable container</div>
+    <button onclick="save()">save</button> <button onclick="restore()">restore</button>
+    
+    <div id="mocha"></div>
+
+<script>
+    function save() {
+        var el = document.getElementById("container");
+        //el.focus();
+        var range = document.createRange();
+        var sel = window.getSelection();
+        console.log("sel range", sel.getRangeAt(0).cloneRange(), range.cloneContents().textContent, sel);
+        var sel = window.SelectionSerializer.save(el);
+        console.log("serialized", sel);
+        return sel;
+    }
+    function restore() {
+        var el = document.getElementById("container");
+        var sel = save();
+        window.SelectionSerializer.restore(el, sel);
+        console.log(window.getSelection().toString());
+        el.focus();
+    }
+
+</script>
+        <!-- ------------------------------------ -->
+        <script src="./test.js"></script>  
+        <!-- ------------------------------------ -->
+        <script type="module">
+            mocha.run();
+        </script>
+</body>
+</html>

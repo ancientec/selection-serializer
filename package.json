@@ -1,0 +1,35 @@
+{
+    "name": "@ancientec/selection-serializer",
+    "description": "Lightweight helper function to serialize selection for wysiwyg editors",
+    "version": "1.0.0",
+    "keywords": [
+        "serialize",
+        "selection",
+        "helper",
+        "function"
+    ],
+    "author": "Ancientec Co., Ltd.",
+    "main": "dist/selection_serializer.js",
+    "types": "dist/selection_serializer.d.ts",
+    "license": "MIT",
+    "repository": "https://github.com/ancientec/selection-serializer",
+    "scripts": {
+        "clean": "(rm -r ./dist || true)",
+        "clean:all": "npm run clean && (rm -r ./node_modules || true)",
+        "build": "npm run clean &&  tsc && npm run esbuild-browser",
+        "esbuild-browser": "esbuild src/browser.js --bundle --minify --outfile=dist/selection_serializer.min.js",
+        "docs": "typedoc --entryPoints src/selection_serializer.ts"
+    },
+    "devDependencies": {
+        "@types/chai": "^4.2.21",
+        "@types/mocha": "^9.0.0",
+        "chai": "^4.1.2",
+        "esbuild": "^0.12.22",
+        "eslint": "^8.0.1",
+        "mocha": "^9.0.0",
+        "source-map-support": "^0.5.12",
+        "ts-node": "^10.0.0",
+        "typedoc": "^0.21.6",
+        "typescript": "^4.3.5"
+    }
+}
