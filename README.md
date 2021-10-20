@@ -79,7 +79,7 @@ Please see tests/test.js for more details.
 
 ```js
 
-import {SelectionSerializer} from 'selection_serializer';
+import SelectionSerializer from 'selection_serializer';
 
 const el = document.getElementById("container");
 var selection = window.SelectionSerializer.save(el);
@@ -102,7 +102,7 @@ var selectionSlim = window.SelectionSerializer.save(el);
 {"startContainer":[0],"startOffset":0,"endContainer":[1],"endOffset":3,"direction":"forward"}
 {"s":[0],"so":0,"e":[1],"eo":3,"d":"f"}
 
-//for section outside of container, return collasped selection at the beginning of container
+//for selection outside of container, return collasped selection at the beginning of container
 {"startContainer":[0],"startOffset":0,"endContainer":[0],"endOffset":0,"direction":"none"}
 {"s":[0],"so":0,"e":[0],"eo":0,"d":"n"}
 ```
