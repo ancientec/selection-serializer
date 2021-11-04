@@ -37,11 +37,13 @@ function nodeMapping(contentContainer : HTMLElement, el : Node) : number[] {
     
     return mapping;
 }
-
+function saveSlim(contentContainer : HTMLElement) : SelectionSlimState {
+    return saveSelection(contentContainer, true) as SelectionSlimState;
+}
 function saveSelection(contentContainer : HTMLElement, returnSlim : boolean = false) : SelectionState | SelectionSlimState {
     const selection =  window.getSelection();
     //selection has set:
-    if (!selection) {
+    if (!selection || selection.rangeCount === 0) {
         return !returnSlim ? {
             startContainer : [],
             startOffset : 0,
@@ -187,6 +189,7 @@ if(typeof window !== "undefined") {
 
 export default {
     save : saveSelection,
+    saveSlim : saveSlim,
     restore : restoreSelection
 
 }

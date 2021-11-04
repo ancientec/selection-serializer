@@ -28,9 +28,9 @@ Lightweight helper function to serialize selection for wysiwyg editors.
 
 ## CDN
 ```html
-https://unpkg.com/@ancientec/selection-serializer@1.0.0/dist/selection_serializer.min.js
+https://unpkg.com/@ancientec/selection-serializer@1.0.1/dist/selection_serializer.min.js
 
-https://cdn.jsdelivr.net/npm/@ancientec/selection-serializer@1.0.0/dist/selection_serializer.min.js
+https://cdn.jsdelivr.net/npm/@ancientec/selection-serializer@1.0.1/dist/selection_serializer.min.js
 ```
 
 ## Result
@@ -64,6 +64,11 @@ startContainer(or s) & endContainer(or e) contain the index values for the eleme
       slim version(reduce characters) for better memory usage & storage:
       {"s":[],"so":0,"e":[],"eo":0,"d":"n"}
       */
+      va selectionSlim2 = SelectionSerializer.saveSlim(containerDomElement);
+      /*
+      slim version(reduce characters) for better memory usage & storage:
+      {"s":[],"so":0,"e":[],"eo":0,"d":"n"}
+      */
 
       SelectionSerializer.restore(containerDomElement, selection);
 </script>
@@ -79,13 +84,15 @@ Please see tests/test.js for more details.
 
 ```js
 
-import SelectionSerializer from 'selection_serializer';
+import SelectionSerializer, {SelectionState, SelectionSlimState} from '@ancientec/selection-serializer';
 
 const el = document.getElementById("container");
-var selection = window.SelectionSerializer.save(el);
+const selection = window.SelectionSerializer.save(el);
 //selection is empty or not in container scope, default to beginning of container:
 //{"startContainer":[],"startOffset":0,"endContainer":[],"endOffset":0,"direction":"none"}
-var selectionSlim = window.SelectionSerializer.save(el);
+const selectionSlim = window.SelectionSerializer.save(el, true);
+//or:
+const selectionSlim2 = window.SelectionSerializer.saveSlim(el);
 //{"s":[0],"so":0,"e":[0],"eo":0,"d":"n"}
 
 
