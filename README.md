@@ -28,9 +28,9 @@ Lightweight helper function to serialize selection for wysiwyg editors.
 
 ## CDN
 ```html
-https://unpkg.com/@ancientec/selection-serializer@1.0.3/dist/selection_serializer.min.js
+https://unpkg.com/@ancientec/selection-serializer@1.1.0/dist/selection_serializer.min.js
 
-https://cdn.jsdelivr.net/npm/@ancientec/selection-serializer@1.0.3/dist/selection_serializer.min.js
+https://cdn.jsdelivr.net/npm/@ancientec/selection-serializer@1.1.0/dist/selection_serializer.min.js
 ```
 
 ## Result
@@ -104,14 +104,21 @@ const selectionSlim2 = window.SelectionSerializer.saveSlim(el);
 {"startContainer":[0],"startOffset":5,"endContainer":[2,1],"endOffset":6,"direction":"backward"}
 {"s":[0],"so":5,"e":[2,1],"eo":6,"d":"b"}
 
+//for selection outside of container, return collasped selection at the end of container
+{"startContainer":[],"startOffset":2,"endContainer":[],"endOffset":2,"direction":"none"}
+{"s":[],"so":2,"e":[],"eo":2,"d":"n"}
 
 //for selection overlaps and contains container, it will retrict selection only within container, this result is relative to the html above
 {"startContainer":[0],"startOffset":0,"endContainer":[1],"endOffset":3,"direction":"forward"}
 {"s":[0],"so":0,"e":[1],"eo":3,"d":"f"}
 
-//for selection outside of container, return collasped selection at the beginning of container
-{"startContainer":[0],"startOffset":0,"endContainer":[0],"endOffset":0,"direction":"none"}
-{"s":[0],"so":0,"e":[0],"eo":0,"d":"n"}
+
+//for selection partial intersect container, this does not happen in real browser, but just in case if it does:
+//beginning of container to somewhere in container:
+{"startContainer":[0],"startOffset":0,"endContainer":[0,1],"endOffset":5,"direction":"forward"}
+//somewhere in container to end of container:
+{"startContainer":[0],"startOffset":3,"endContainer":[1],"endOffset":3,"direction":"forward"}
+
 ```
 
 ## License
