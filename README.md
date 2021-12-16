@@ -28,9 +28,9 @@ Lightweight helper function to serialize selection for wysiwyg editors.
 
 ## CDN
 ```html
-https://unpkg.com/@ancientec/selection-serializer@1.1.0/dist/selection_serializer.min.js
+https://unpkg.com/@ancientec/selection-serializer@1.1.1/dist/selection_serializer.min.js
 
-https://cdn.jsdelivr.net/npm/@ancientec/selection-serializer@1.1.0/dist/selection_serializer.min.js
+https://cdn.jsdelivr.net/npm/@ancientec/selection-serializer@1.1.1/dist/selection_serializer.min.js
 ```
 
 ## Result

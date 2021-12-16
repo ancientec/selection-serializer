@@ -1,7 +1,7 @@
 {
     "name": "@ancientec/selection-serializer",
     "description": "Lightweight helper function to serialize selection for wysiwyg editors",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "keywords": [
         "serialize",
         "selection",

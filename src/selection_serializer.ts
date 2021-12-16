@@ -143,11 +143,21 @@ function restoreSelection(contentContainer : HTMLElement, select : SelectionStat
         }
         
     }
+    if(startContainer.nodeType === Node.TEXT_NODE && startContainer.textContent!.length < sel.startOffset) {
+        sel.startOffset = startContainer.textContent!.length;
+    } else if(startContainer.childNodes.length >= 1  && startContainer.childNodes.length < sel.startOffset) {
+        sel.startOffset = startContainer.childNodes.length-1;
+    }
     let endContainer = contentContainer as ChildNode;
     for(let i = sel.endContainer.length - 1; i >= 0; i --) {
         if (endContainer.childNodes && endContainer.childNodes.length > sel.endContainer[i] && endContainer.childNodes[sel.endContainer[i]]) {
             endContainer = endContainer.childNodes[sel.endContainer[i]];
         }
+    }
+    if(endContainer.nodeType === Node.TEXT_NODE && endContainer.textContent!.length < sel.endOffset) {
+        sel.endOffset = endContainer.textContent!.length;
+    } else if(endContainer.childNodes.length >= 1  && endContainer.childNodes.length < sel.endOffset) {
+        sel.endOffset = endContainer.childNodes.length-1;
     }
 
     let newRange = document.createRange();
